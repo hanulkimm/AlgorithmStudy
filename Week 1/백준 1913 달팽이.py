@@ -15,7 +15,7 @@ arr = [[0] * n for _ in range(n)]
 i = 0 #맨 뒤 숫자부터 시작하기
 j = 0
 
-for cnt in range(n*n, -1, -1):
+for cnt in range(n*n, 0, -1):
     arr[i][j] = cnt
     ni, nj = i + di[dr], j + dj[dr]
     if 0<=ni<n and 0<=nj<n and arr[ni][nj] == 0:
