@@ -1,3 +1,6 @@
+## 풀리긴 하지만 추천하지 않는 노가다 코드...##
+## 이렇게 풀지 말기 ##
+
 import sys
 
 sys.stdin = open('input.txt', 'r')
