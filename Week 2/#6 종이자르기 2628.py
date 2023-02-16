@@ -55,3 +55,38 @@ for i in length_garo:
         if ans < i * j:
             ans = i * j
 print(ans)
+
+
+
+## 메서드 사용 ##
+w, h = map(int, input().split())
+n = int(input())
+
+lst_garo = []
+lst_sero = []
+for _ in range(n):
+    dr, num = map(int, input().split())
+    if dr == 0: #가로로 자르는 경우
+        lst_garo.append(num)
+    else: # 세로로 자르는 경우
+        lst_sero.append(num)
+
+lst_garo.sort()
+lst_sero.sort()
+
+lst_garo.append(h)
+lst_sero.append(w)
+length_garo = []
+length_sero = []
+st = 0
+for i in lst_garo:
+    length_garo.append(i-st)
+    st = i
+
+st = 0
+for i in lst_sero:
+    length_sero.append(i-st)  
+    st = i
+print(length_sero)
+ans = max(length_garo) * max(length_sero)
+print(ans)
