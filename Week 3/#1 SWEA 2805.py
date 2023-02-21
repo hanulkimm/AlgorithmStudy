@@ -12,13 +12,13 @@ for tc in range(1, t+1):
     m = (n-1)//2
     ans = 0
     sj, ej = m, m # 1행에서 수확할 때 열의 시작, 끝점
-    for i in range(n):
-        for j in range(sj, ej+1):
+    for i in range(n): # 각 행마다 돌면서
+        for j in range(sj, ej+1): 
             ans += arr[i][j]
-        if i < m: # 중간행 전까지
+        if i < m: # 중간행 전까지( 열의 길이가 커진다)
             sj -= 1
             ej += 1
-        else:
+        else: # 수확하는 열의 길이가 작아진다
             sj += 1
             ej -= 1
     print(f'#{tc} {ans}')
