@@ -18,7 +18,7 @@ def cnt(level):
         for j in range(n):
             if arr[i][j] > level and v[i][j]==0:
                 tmp += 1
-                bfs(i,j,v)
+                bfs(i,j,v)#2
     return tmp
 
 n = int(input())
