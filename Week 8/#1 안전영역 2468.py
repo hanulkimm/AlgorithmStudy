@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 from collections import deque
-def bfs(i,j,v):
+def bfs(i,j,v): # 영역 방문 표시
     q = deque([(i,j)])
     while q:
         ci,cj = q.popleft()
@@ -11,19 +11,19 @@ def bfs(i,j,v):
                 v[ni][nj]=1
                 q.append((ni,nj))
 
-def cnt(level):
+def cnt(level): # 영역 개수 세기
     tmp = 0
     v = [[0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
             if arr[i][j] > level and v[i][j]==0:
-                tmp += 1
-                bfs(i,j,v)#2
+                tmp += 1 # 영역 +1
+                bfs(i,j,v) # 이어져 있는 영역 방문 표시
     return tmp
 
 n = int(input())
 arr = [list(map(int, input().split())) for _ in range(n)]
-mx = 0
+mx = 0 # 최대 높이
 for lst in arr:
     for ch in lst:
         if mx < ch:

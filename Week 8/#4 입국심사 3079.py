@@ -3,7 +3,7 @@ sys.stdin = open('input.txt', 'r')
 
 n, m = map(int, input().split())
 arr = [int(input()) for _ in range(n)]
-s, e = 0 , max(arr)*m # 최소 시간, 최대 시간
+s, e = min(arr) , max(arr)*m # 최소 시간, 최대 시간
 ans = e
 while s<=e:
     total = 0 # 심사 가능한 전체 사람 수
