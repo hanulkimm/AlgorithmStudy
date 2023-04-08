@@ -1,5 +1,3 @@
-import sys
-sys.stdin = open('input.txt', 'r')
 from collections import deque
 
 def bfs(water_lst):
@@ -8,12 +6,12 @@ def bfs(water_lst):
         for di,dj in ((-1, 0), (1, 0), (0, -1), (0, 1)):
             nwi, nwj = wi+di, wj+dj
             if 0<=nwi<n and 0<=nwj<m and (arr[nwi][nwj]=='.' or arr[nwi][nwj]=='S'):
-                if water_v[nwi][nwj]==0 or water_v[nwi][nwj] > water_v[wi][wj]+1:
+                if water_v[nwi][nwj] > water_v[wi][wj]+1:
                     water_v[nwi][nwj]=water_v[wi][wj]+1
                     water_lst.append((nwi,nwj))
 
 def bfs_new(si,sj):
-    v = [[0] * m for _ in range(n)]
+
     q = deque()
     q.append((si,sj))
     v[si][sj]=1
@@ -22,21 +20,22 @@ def bfs_new(si,sj):
         ci,cj=q.popleft()
         for di, dj in ((-1, 0), (1, 0), (0, -1), (0, 1)):
             ni,nj = ci+di, cj+dj
-            if 0<=ni<n and 0<=nj<m and (arr[ni][nj]=='.' or arr[ni][nj]=='D'):
-                if v[ni][nj]==0 or v[nj][nj]>v[ci][cj]+1: # 고슴도치의 이동조건(최소 시간으로 이동)
+            if 0<=ni<n and 0<=nj<m and arr[ni][nj]=='.':
+                if v[ni][nj]==0 or v[ni][nj]>v[ci][cj]+1: # 고슴도치의 이동조건(최소 시간으로 이동)
                     if v[ci][cj]+1 < water_v[ni][nj]: # 물의 이동시간보다 적게 걸렸다면
                         v[ni][nj]=v[ci][cj]+1
                         q.append((ni,nj))
             if 0 <= ni < n and 0 <= nj < m and  arr[ni][nj] == 'D':
-                if v[ni][nj] == 0 or v[nj][nj] > v[ci][cj] + 1:
+                if v[ni][nj] == 0 or v[ni][nj] > v[ci][cj] + 1:
                     v[ni][nj] = v[ci][cj] + 1
     return v[ei][ej]
 
 n, m = map(int, input().split())
 arr = [list(input()) for _ in range(n)]
-print(arr)
+v = [[0] * m for _ in range(n)]
+INF = 1e9
 water_lst = deque()
-water_v = [[0] * m for _ in range(n)]
+water_v = [[INF] * m for _ in range(n)]
 for i in range(n):
     for j in range(m):
         if arr[i][j]=='*':
@@ -47,6 +46,10 @@ for i in range(n):
         if arr[i][j]=='D':
             ei, ej = i, j
 bfs(water_lst)
+ans = bfs_new(si,sj)
 
-print(water_v)
-print(bfs_new(si,sj))
+if ans !=0:
+    ans -= 1
+else:
+    ans = "KAKTUS"
+print(ans)
