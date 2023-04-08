@@ -6,6 +6,9 @@ def dfs(i, cnt, st):
         if len(st)>=2*num:
             if st[len(st)-num:]==st[len(st)-2*num:len(st)-num]:
                 return
+    
+    # 만약 길이 6: 
+    
     if cnt==n:
         if int(ans) > int(st):
             ans = st
